@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "leaflet/dist/leaflet.css";
+import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css";
+import "leaflet-defaulticon-compatibility";
 
 import LeafletMap from "./components/leafletMap";
 import Header from "./components/headers";
