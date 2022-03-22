@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.css";
+import "leaflet/dist/leaflet.css";
 
-function App() {
+import LeafletMap from "./components/leafletMap";
+import Header from "./components/headers";
+
+const App = () => {
+  const [markers, setMarkers] = useState([
+    {
+      latitude: 17.440081,
+      longitude: 78.348915,
+    },
+  ]);
+  const [center, setCenter] = useState([17.440081, 78.348915]);
+
+  const setMarker = ({ latitude, longitude }) => {
+    setMarkers([
+      ...markers,
+      {
+        latitude,
+        longitude,
+      },
+    ]);
+    setCenter([latitude, longitude]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" style={{ textAlign: "left" }}>
+      <Header setMarker={setMarker} />
+      <LeafletMap
+        markers={markers}
+        setMarker={setMarker}
+        centerPosition={center}
+      />
     </div>
   );
-}
+};
 
 export default App;
